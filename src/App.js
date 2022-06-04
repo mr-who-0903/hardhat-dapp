@@ -16,7 +16,7 @@ const App = () => {
         let contractAdderss = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
         const url = 'http://localhost:8545';
         const provider = new ethers.providers.JsonRpcProvider(url);
-        const contract = new ethers.Contract(
+        const contract = new ethers.Contract(    // creating instance of contract
             contractAdderss,
             Greeter.abi,
             provider
@@ -24,7 +24,6 @@ const App = () => {
 
         setContract(contract);
         setProvider(provider);
-        //console.log(contract);
     }
 
     loadContract();
@@ -34,12 +33,12 @@ const App = () => {
   useEffect(() =>{
 
     const getGreetings = async () =>{
-      console.log('getting greetings');
       const greeting = await contract.greet();
       doGreeting(greeting);
     }
     contract && getGreetings();
   },[contract, change]);
+
 
   const changeGreeting = async () =>{
     const input = document.querySelector('#value');
@@ -47,6 +46,7 @@ const App = () => {
     signer.setGreeting(input.value);
     setChange(!change);
   }
+  
 
   return (
     <div className='center'>
