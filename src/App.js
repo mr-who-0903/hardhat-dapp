@@ -9,6 +9,7 @@ const App = () => {
   const [contract, setContract] = useState(null);
   const [provider, setProvider] = useState(null);
   const [change, setChange] = useState(false);
+  const [num, setNum] = useState(0);
 
   useEffect(() =>{
 
@@ -43,16 +44,27 @@ const App = () => {
   const changeGreeting = async () =>{
     const input = document.querySelector('#value');
     const signer = contract.connect(provider.getSigner());
-    signer.setGreeting(input.value);
+    await signer.setGreeting(input.value);
     setChange(!change);
+  }
+
+  const reverseNum = async () =>{
+    const input = document.querySelector('#num');
+    const signer = contract.connect(provider.getSigner());
+    const revNum = await signer.reverse(input.value);
+    setNum(parseInt(revNum._hex)); 
   }
   
 
   return (
-    <div className='center'>
+      <div className='center'>
         <h3>{greeting}</h3>
+        <h3>{num}</h3>
         <input className='input' type="text" id='value'></input>
         <button className="button" onClick={changeGreeting}>Change</button>
+
+        <input className='input' type="text" id='num' autoComplete='off'></input>
+        <button className="button" onClick={reverseNum}>Reverse</button>
       </div>
   )
 }

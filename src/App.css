@@ -1,5 +1,5 @@
 .center {
-    margin: auto;
+    margin: 5rem auto;
     width: 40%;
     border: 1px solid black;
     padding: 10px;
@@ -9,13 +9,14 @@
     background-color: #4caf50; /* Green */
     border: none;
     color: white;
-    padding: 7px 5px;
+    padding: 7px 16px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 10px;
+    font-size: 15px;
     margin-left: 10px;
     border-radius: 2px;
+    cursor: pointer;
   }
 
 .button:hover {
@@ -24,7 +25,8 @@
 
 .input[type="text"] {
     width: 70%;
-    padding: 2px 5px;
+    padding: 5px 5px;
     margin: 8px 0;
     box-sizing: border-box;
+    outline: none;
 }

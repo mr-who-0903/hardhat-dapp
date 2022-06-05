@@ -17,4 +17,18 @@ contract Greeter {
         
         greeting = _greeting;
     }
+
+    function reverse(uint n) pure public returns(uint) {
+        
+        uint digit;
+        uint rev;
+
+        while(n != 0){
+            digit = n % 10;
+            rev = (rev * 10) + digit;
+            n = n/10;
+        }
+
+        return rev;
+    }
 }
