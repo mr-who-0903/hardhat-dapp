@@ -54,7 +54,7 @@ const App = () => {
     const revNum = await signer.reverse(input.value);
     setNum(parseInt(revNum._hex)); 
   }
-  
+
 
   return (
       <div className='center'>
@@ -70,3 +70,13 @@ const App = () => {
 }
 
 export default App
+
+
+/****** CONNECT TO METAMASK ********/
+
+// const connect = async () =>{
+//   const provider = new ethers.providers.Web3Provider(window.ethereum);
+//   await provider.send("eth_requestAccounts", []);
+//   const signer = provider.getSigner();
+//   console.log("Account:", await signer.getAddress());
+// } 
