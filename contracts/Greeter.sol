@@ -3,10 +3,14 @@ pragma solidity >=0.5.0 <0.9.0;
 
 contract Greeter {
     string private greeting;
+    address[] contestents;
+    uint noOfContestents;
+    address manager;
+
 
     constructor(string memory _greeting) {
-        
         greeting = _greeting;
+        manager = msg.sender;
     }
 
     function greet() public view returns (string memory) {
@@ -30,5 +34,15 @@ contract Greeter {
         }
 
         return rev;
+    }
+
+    function addContestent(address _addr) public{
+        require(msg.sender == manager, "You are not the manager");
+        contestents.push(_addr);
+        noOfContestents++;
+    }
+
+    function num() view public returns(uint) {
+        return noOfContestents;
     }
 }
