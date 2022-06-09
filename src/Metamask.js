@@ -12,22 +12,18 @@ import './App.css';
 const App = () => {
   
   const [contract, setContract] = useState(null);
+  const [contractWithSigner, setContractWithSigner] = useState(null);
   const [provider, setProvider] = useState(null);
-  const [address, setAddress] = useState(null);
   const [totalCont, setTotalCont] = useState(0);
 
 
   useEffect(() =>{
 
     const loadContract = async() =>{
-        let contractAdderss = "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0";
+        let contractAdderss = "0x5fbdb2315678afecb367f032d93f642f64180aa3";
         const url = 'http://localhost:8545';
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         await provider.send("eth_requestAccounts", []);
-        const signer = provider.getSigner();
-
-        console.log(signer);
-        setAddress(await signer.getAddress());
 
         const contract = new ethers.Contract(    // creating instance of contract
             contractAdderss,
@@ -35,7 +31,11 @@ const App = () => {
             provider
         );
 
+        const signer = provider.getSigner();
+        const contractWithSigner = contract.connect(signer);
+
         setContract(contract);
+        setContractWithSigner(contractWithSigner);
         setProvider(provider);
     }
 
@@ -45,14 +45,15 @@ const App = () => {
 
   const addCont = async () =>{
       const input = document.querySelector('#value');
-      const signer = contract.connect(provider.getSigner());
-      await signer.addContestent(input.value);
+      const res = await contractWithSigner.addContestent(input.value);
+      if(res){
+        console.log('Added !');
+      }
   }
 
   const totCont = async () =>{
-    const signer = contract.connect(provider.getSigner());
-    const res = await signer.num();
-    setTotalCont(parseInt(res._hex));
+      const res = await contractWithSigner.num();
+      setTotalCont(parseInt(res._hex));
   }
 
 
@@ -68,4 +69,3 @@ const App = () => {
 }
 
 export default App
-
