@@ -1,9 +1,3 @@
-/*******  METHOD TO CONNECT TO METAMASK AND INTERACT WITH CONTRACT USING ETHERS.JS ********/
-/*  
-    this is just a demonstration file.
-    this file has no connection with app.js
-*/
-
 import React, {useState, useEffect} from 'react'
 import Greeter from './artifacts/contracts/Greeter.sol/Greeter.json';
 import {ethers} from 'ethers';
@@ -46,7 +40,8 @@ const App = () => {
   const addCont = async () =>{
       const input = document.querySelector('#value');
       const res = await contractWithSigner.addContestent(input.value);
-      if(res) console.log('Added !');
+      if(res) 
+        console.log('Added !');
   }
 
   const totCont = async () =>{

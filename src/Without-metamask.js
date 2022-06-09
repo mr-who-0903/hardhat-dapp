@@ -1,3 +1,9 @@
+/*******  METHOD TO INTERACT WITH CONTRACT WITHOUT METAMASK, USING ETHERS.JS ********/
+/*  
+    this is just a demonstration file.
+    this file has no connection with app.js
+*/
+
 import React, {useState, useEffect} from 'react'
 import Greeter from './artifacts/contracts/Greeter.sol/Greeter.json';
 import {ethers} from 'ethers';

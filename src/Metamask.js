@@ -46,9 +46,9 @@ const App = () => {
   const addCont = async () =>{
       const input = document.querySelector('#value');
       const res = await contractWithSigner.addContestent(input.value);
-      if(res){
+      if(res)
         console.log('Added !');
-      }
+      
   }
 
   const totCont = async () =>{
